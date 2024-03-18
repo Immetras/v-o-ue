@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-html="title"></h1>
+      <h2 v-html="content"></h2>
+
+      <p>samochód: {{ getCar}}</p>
+      <p>rok produkcji: {{getYear }}</p>
+
+      <p>samochód: {{ getCar}}</p>
+      <p>rok produkcji: {{getYear }}</p>
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            title: "title",
+            content: "content",
+            type: "Fiat",
+            year: 1989,
+            model: "Panda",
+          };
+        },
+        computed: {
+          getCar() {
+            const car = "To jest auto: " + this.type + "" + this.model;
+            console.log(car);
+            return car;
+          },
+          getYear() {
+            const year = "To jest rok: " + this.year;
+            console.log(year);
+            return year;
+          },
+        },
+      }).mount("#app");
+
+      app.title = "05: computed properties";
+      // app.content = "dyrektywa v-for, iteracja po key, value, index";
+    </script>
+  </body>
+</html>

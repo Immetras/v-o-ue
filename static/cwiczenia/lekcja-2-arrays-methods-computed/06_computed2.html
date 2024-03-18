@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-html="title"></h1>
+      <h2 v-html="content"></h2>
+
+      <p>COMPUTED {{liczba}}, {{random}}, {{sekunda}}</p>
+      <p>COMPUTED {{liczba}}, {{random}}, {{sekunda}}</p>
+      <p>COMPUTED {{liczba}}, {{random}}, {{sekunda}}</p>
+      <br />
+      <!-- <p>METHOD {{liczba2()}}, {{random2()}}, {{sekunda2()}}</p> -->
+      <p>METHOD {{metoda()}}</p>
+      <p>METHOD {{metoda()}}</p>
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            title: "title",
+            content: "content",
+          };
+        },
+        computed: {
+          liczba() {
+            const nmb = `liczba: ${100}`;
+            console.log(nmb);
+            return nmb;
+          },
+          random() {
+            const number = `random: ${Math.random() * 5}`;
+            console.log(number);
+            return number;
+          },
+          sekunda() {
+            const time = `sekunda: ${5}`;
+            console.log(time);
+            return time;
+          },
+        },
+        methods: {
+          metoda() {
+            const met = `Liczba ${100}, random: ${Math.random() * 3},sekunda: ${5}`;
+            console.log(met);
+            return met;
+
+            //   },
+            //   liczba2() {
+            //     const nmb = `liczba: ${100}`;
+            //     console.warn(nmb);
+            //     return nmb;
+            //   },
+            //   random2() {
+            //     const number = `random: ${Math.random() * 3}`;
+            //     console.warn(number);
+            //     return number;
+            //   },
+            //   sekunda2() {
+            //     const time = `sekunda: ${5}`;
+            //     console.warn(time);
+            //     return time;
+          },
+        },
+      }).mount("#app");
+
+      app.title = "06: computed properties v2";
+      // app.content = "dyrektywa v-for, iteracja po key, value, index";
+    </script>
+  </body>
+</html>

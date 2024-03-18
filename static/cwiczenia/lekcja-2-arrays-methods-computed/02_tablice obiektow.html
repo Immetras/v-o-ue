@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      function main() {
+        const app = Vue.createApp({
+          data() {
+            return {
+              title: "title",
+              content: "content",
+              array: [
+                { a: 1, b: 4 },
+                { a: 2, b: 5 },
+                { a: 3, b: 6 },
+              ],
+            };
+          },
+        }).mount("#app");
+
+        app.title = "02: Dyrektywy VueJs";
+        app.content = "dyrektywa v-for, iteracja po obiektach";
+      }
+    </script>
+  </head>
+  <body onload="main()">
+    <div id="app">
+      <h1 v-html="title"></h1>
+      <h2 v-html="content"></h2>
+
+      <ul>
+        <li v-for="item in array">{{item}}</li>
+      </ul>
+      <ul>
+        <li v-for="item in array">{{item.a}} {{item.b}}</li>
+      </ul>
+      <ul>
+        <li v-for="(item,i) in array">{{i}}: {{item.a}} {{item.b}}</li>
+      </ul>
+    </div>
+  </body>
+</html>

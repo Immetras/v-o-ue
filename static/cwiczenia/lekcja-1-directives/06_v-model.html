@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      function main() {
+        const app = Vue.createApp({
+          data() {
+            return {
+              title: "title",
+              content: "content",
+              message: "zawartość pola txt",
+              selected: "",
+            };
+          },
+        }).mount("#app");
+
+        app.title = "05: Dyrektywy VueJs";
+        app.content = "dyrektywa v-mocel umożliwia wiązanie: dane->interfejs, interfejs->dane";
+      }
+    </script>
+  </head>
+  <body onload="main()">
+    <div id="app">
+      <h1 v-text="title"></h1>
+      <h2 v-text="content"></h2>
+      <input v-model="message" type="text" />
+      <p>Komunikat z pola txt: {{ message }}</p>
+
+      <select v-model="selected">
+        <option>aaa</option>
+        <option>bbb</option>
+        <option>ccc</option>
+      </select>
+      <h5>Wybrane z selecta: {{ selected }}</h5>
+    </div>
+  </body>
+</html>

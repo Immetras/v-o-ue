@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body <!--onload="main()" -->
+    >
+    <div id="app">
+      <h1 v-html="title"></h1>
+      <h2 v-html="content"></h2>
+      <ul>
+        <li v-for="item in array">{{item}}</li>
+      </ul>
+
+      <ul>
+        <li v-for="item of array2" v-text="item"></li>
+      </ul>
+
+      <ul>
+        <li v-for="(item,i) in array2">{{i}}:{{item}}</li>
+      </ul>
+    </div>
+    <script defer>
+      //   function main() {
+      const app = Vue.createApp({
+        data() {
+          return {
+            title: "title",
+            content: "content",
+            array: [1, 2, 3, 4, 5],
+            array2: ["d", "b", "c", "a"],
+          };
+        },
+      }).mount("#app");
+
+      app.title = "01: Dyrektywy VueJs";
+      app.content = "dyrektywa v-for, iteracja po tablicy, dwukierunkowe";
+      //   }
+    </script>
+  </body>
+</html>

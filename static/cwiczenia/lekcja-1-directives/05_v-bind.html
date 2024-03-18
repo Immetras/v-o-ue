@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      function main() {
+        const app = Vue.createApp({
+          data() {
+            return {
+              onet_url: "http://kropka.onet.pl",
+              img_width: 200,
+              img_height: 100,
+              img_src: "../../gfx/google.png",
+              title: "title",
+              content: "content",
+            };
+          },
+        }).mount("#app");
+
+        app.title = "05: Dyrektywy VueJs";
+        app.content =
+          "dyrektywa v-bind, atrybuty tagów html, ma skróconą wersje ':' aktualizuje zmiany";
+      }
+    </script>
+  </head>
+  <body onload="main()">
+    <div id="app">
+      <h1 v-html="title"></h1>
+      <h2 v-html="content"></h2>
+      <a v-bind:href="onet_url">ONET</a>
+      <img v-bind:width="img_width" v-bind:height="img_height" v-bind:src="img_src" />
+      <img v-bind:width="img_height" v-bind:height="img_width" v-bind:src="img_src" />
+    </div>
+  </body>
+</html>

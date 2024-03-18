@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function main() {
+        const data = JSON.stringify({
+          // div: document.getElementById("linki")
+        });
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: data,
+        };
+        fetch("/handleForm", options)
+          .then((response) => response.json()) // konwersja na obiekt json, jeśli konieczne
+          .then((data) => pliki(data)) // sformatowane z wcięciami dane odpowiedzi z serwera
+          .catch((error) => console.log(error));
+
+        function pliki(arr) {
+          const linki = document.getElementById("linki");
+          for (let i = 0; i < arr.length; i++) {
+            console.log(arr[i]);
+            let div = document.createElement("div");
+
+            let h4 = document.createElement("h4");
+            h4.innerText = arr[i][0];
+
+            div.appendChild(h4);
+
+            for (let j = 0; j < arr[i][1].length; j++) {
+              const a = document.createElement("a");
+
+              a.href = `/cwiczenia/${arr[i][0]}/${arr[i][1][j]}`;
+              a.innerText = arr[i][1][j];
+              div.appendChild(a);
+            }
+            linki.appendChild(div);
+          }
+        }
+      }
+    </script>
+
+    <style>
+      a {
+        margin: 5px;
+        padding: 2px;
+        border: 2px solid blue;
+        border-radius: 8px;
+        color: blue;
+        background-color: orange;
+        text-decoration: none;
+        display: inline-block;
+      }
+    </style>
+  </head>
+
+  <body onload="main()">
+    <h1 style="color: blue">lekcje VueJS</h1>
+    <br />
+    <div id="linki"></div>
+  </body>
+</html>

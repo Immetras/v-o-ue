@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      function main() {
+        const app = Vue.createApp({
+          data() {
+            return {
+              title: "title",
+              content: "content",
+            };
+          },
+        }).mount("#app");
+
+        app.title = "02: Dyrektywy VueJs";
+        app.content = "dyrektywa v-text zamiast {{}},  <b>TEST</b>, aktualizacja";
+      }
+    </script>
+  </head>
+  <body onload="main()">
+    <div id="app">
+      <h1 v-text="title"></h1>
+      <h2 v-text="content"></h2>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      function main() {
+        const app = Vue.createApp({
+          data() {
+            return {
+              title: "title",
+              content: "content",
+              x: 100,
+              y: "test",
+            };
+          },
+        }).mount("#app");
+
+        app.title = "07: Dyrektywy VueJs";
+        app.content = "umożliwiają obliczenia, wyrażenia, if-y";
+      }
+    </script>
+  </head>
+  <body onload="main()">
+    <div id="app">
+      <h1 v-text="title"></h1>
+      <h2 v-text="content"></h2>
+      <p>Math.pow(2,5) {{ Math.pow(2,5) }}</p>
+      <p>new Date().getTime() {{ new Date().getTime() }}</p>
+      <p>Math.random() {{ Math.random() }}</p>
+      <p>x > 5 ? "tak" : "nie"{{x > 5 ? "tak" : "nie"}}</p>
+      <p v-text="y.length < 5 ? 'tak' : 'nie'"></p>
+    </div>
+  </body>
+</html>

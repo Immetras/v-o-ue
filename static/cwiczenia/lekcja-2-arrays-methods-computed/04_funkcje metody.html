@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      function main() {
+        const app = Vue.createApp({
+          data() {
+            return {
+              text: "to jest tekst",
+              length: 0,
+              title: "title",
+              content: "content",
+            };
+          },
+          methods: {
+            getTextLength(val) {
+              return val.length;
+            },
+            getTextLength2() {
+              return this.text.length;
+            },
+            getTextLengthWithHTML() {
+              return "długość text: " + this.text.length;
+            },
+            setLength(val) {
+              this.length = val;
+            },
+          },
+        }).mount("#app");
+
+        app.title = "04: Funkcje";
+        // app.content = "dyrektywa v-for, iteracja po key, value, index";
+        app.setLength(100);
+      }
+    </script>
+  </head>
+  <body onload="main()">
+    <div id="app">
+      <h1 v-html="title"></h1>
+      <h2 v-html="content"></h2>
+      <p>długość tekstu: {{ getTextLength2() }}</p>
+      <p>długość tekstu: {{ getTextLength(text) }}</p>
+
+      <p v-text="getTextLength(text)"></p>
+      <p v-html="getTextLengthWithHTML()"></p>
+    </div>
+  </body>
+</html>
