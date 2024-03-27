@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <style>
+      .car {
+        height: 250px;
+        width: 200px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        float: left;
+        margin: 5px;
+        border-radius: 2px;
+      }
+      .new {
+        background-color: greenyellow;
+      }
+      .old {
+        background-color: lightcoral;
+      }
+    </style>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{title}}</h1>
+      <h2>{{content}}</h2>
+
+      <a v-bind:href="link">
+        <img height="100px" v-bind:src="image" />
+      </a>
+
+      <a v-bind:href="getLink()">
+        <img height="100px" v-bind:src="getImage()" />
+      </a>
+
+      <a :href="getLink()">
+        <img height="100px" :src="getImage()" />
+      </a>
+      <br />
+
+      <div class="car" :class="carOld(car.rok)" v-for="car in cars">
+        <p>{{car.model}}-{{car.typ}}-{{car.rok}}</p>
+        <img :src="car.image" />
+      </div>
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            title: "title",
+            content: "content",
+            link: "https://vuejs.org/",
+            image: "https://vuejs.org/images/logo.png",
+            cars: [],
+          };
+        },
+        methods: {
+          getLink() {
+            console.log("link");
+            return this.link;
+          },
+          getImage() {
+            console.log("image");
+            return this.image;
+          },
+          carOld(year) {
+            if (year > 2010) return "new";
+            else return "old";
+          },
+        },
+      }).mount("#app");
+
+      app.title = "07: funkcje i atrybuty";
+      class Car {
+        constructor(id, model, typ, rok, image) {
+          this.id = id;
+          this.model = model;
+          this.typ = typ;
+          this.rok = rok;
+          this.image = `../../gfx/${image}.webp`;
+        }
+      }
+      app.cars = [
+        new Car(1, "Suzuki", "Vitara", 2016, "sVitara"),
+        new Car(2, "Renault", "Trafic", 2017, "rTrafic"),
+        new Car(3, "Volkswagen", "Eos", 2006, "vEos"),
+        new Car(4, "Opel", "Insignia", 2015, "oInsignia"),
+        new Car(5, "Porsche", "Cayenne", 2011, "pCayenne"),
+        new Car(6, "BMW", "Seria 3", 2004, "bmw3"),
+      ];
+    </script>
+  </body>
+</html>

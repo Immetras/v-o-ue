@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <style>
+      .car {
+        height: 250px;
+        width: 200px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        float: left;
+        margin: 5px;
+        border-radius: 2px;
+      }
+      .new {
+        background-color: greenyellow;
+      }
+      .old {
+        background-color: lightcoral;
+      }
+    </style>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{title}}</h1>
+      <h2>{{content}}</h2>
+
+      <div :class="check">{{value}}</div>
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            title: "title",
+            content: "content",
+            value: 0,
+          };
+        },
+        methods: {
+          czas() {
+            setInterval(() => {
+              this.value++;
+              console.log(this.value);
+              return this.value;
+            }, 1913);
+          },
+        },
+        computed: {
+          check() {
+            setInterval(() => {
+              if (this.value % 2 == 0) {
+                console.log(0, "blue");
+                return "blue";
+              } else {
+                console.log(1, "red");
+                return "red";
+              }
+            }, 2000);
+          },
+        },
+      }).mount("#app");
+
+      app.czas();
+
+      app.title = "08: cw1 ";
+    </script>
+  </body>
+</html>
